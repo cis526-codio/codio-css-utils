@@ -1,0 +1,19 @@
+{
+  "name": "codio-css-utils",
+  "version": "0.0.1",
+  "description": "CSS file parsing utilies based on nocde package css. For usage in codio course assesments.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/dwarfy/codio-css-utils.git"
+  },
+  "author": "Mathieu Van der Haegen <mvanderhaegen@codio.com>",
+  "bugs": {
+    "url": "https://bitbucket.org/dwarfy/codio-css-utils/issues"
+  },
+  "dependencies": {
+    "css": "2.2.x",
+    "underscore":"1.8.x"
+  },
+  "license": "MIT"
+}
