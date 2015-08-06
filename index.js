@@ -73,7 +73,7 @@ Astobj.prototype.selector_has_property = function(selector, property, property_v
   
 }
 
-Astobj.check(check_rules,errors) {
+Astobj.prototype.check = function(check_rules,errors) {
     
     var that = this;
     var selector = check_rules.selector;
