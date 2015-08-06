@@ -80,10 +80,14 @@ Astobj.prototype.style_string_to_obj = function(style_string) {
         
         var elems = item.trim().split(":");
         
-        var prop = elems[0].trim();
-        var val = elems[1].trim();
+        if (elems && (elems.length == 2)) {
+            var prop = elems[0].trim();
+            var val = elems[1].trim();
         
-        style_obj[prop] = ""+val;
+            style_obj[prop] = ""+val;
+        }
+        
+
     });
     
     return style_obj;
