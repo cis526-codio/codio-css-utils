@@ -73,12 +73,40 @@ Astobj.prototype.selector_has_property = function(selector, property, property_v
   
 }
 
+Astobj.prototype.style_string_to_obj = function(style_string) {
+    var parts = style_string.split(";")
+    var style_obj = {};
+    _.each(parts,function(item,index,list) {
+        
+        var elems = item.trim().split(:);
+        
+        var prop = elem[0].trim();
+        var val = elem[1].trim();
+        
+        style_obj[prop] = ""+val;
+    });
+    
+    return style_obj;
+}
+
 Astobj.prototype.check = function(check_rules,errors) {
     
     var that = this;
     var selector = check_rules.selector;
+    var check = null;
     
-    _.each(check_rules.check,function(value, key, list){
+    if (typeof check_rules.check === "string") {
+        check = that.style_string_to_obj(check_rules.check);
+    } else if (typeof check_rules.check === "object") {
+        check = check_rules.check;
+    }
+    
+    if (!check) {
+        return;
+    }
+    
+    
+    _.each(check,function(value, key, list){
         if (!that.selector_has_property(selector,key,value)) {
             errors.push(selector + " should have "+ key + " " + value);
         }
