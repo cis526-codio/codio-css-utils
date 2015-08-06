@@ -73,6 +73,19 @@ Astobj.prototype.selector_has_property = function(selector, property, property_v
   
 }
 
+Astobj.check(check_rules,errors) {
+    
+    var that = this;
+    var selector = check_rules.selector;
+    
+    _.each(check,function(value, key, list){
+        if (!that.selector_has_property(selector,key,value)) {
+            errors.push(selector + " should have "+ key + " " + value);
+        }
+    })
+    
+}
+
 
 var _get_ast = function(path) {
   return new Astobj(path);
