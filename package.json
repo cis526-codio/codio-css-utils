@@ -1,6 +1,6 @@
 {
   "name": "codio-css-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CSS file parsing utilies based on nocde package css. For usage in codio course assesments.",
   "main": "index.js",
   "repository": {
