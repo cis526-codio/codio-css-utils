@@ -78,7 +78,7 @@ Astobj.prototype.check = function(check_rules,errors) {
     var that = this;
     var selector = check_rules.selector;
     
-    _.each(check,function(value, key, list){
+    _.each(check_rules.check,function(value, key, list){
         if (!that.selector_has_property(selector,key,value)) {
             errors.push(selector + " should have "+ key + " " + value);
         }
