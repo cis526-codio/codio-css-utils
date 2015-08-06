@@ -78,7 +78,7 @@ Astobj.prototype.style_string_to_obj = function(style_string) {
     var style_obj = {};
     _.each(parts,function(item,index,list) {
         
-        var elems = item.trim().split(:);
+        var elems = item.trim().split(":");
         
         var prop = elem[0].trim();
         var val = elem[1].trim();
