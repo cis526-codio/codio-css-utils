@@ -84,6 +84,16 @@ Astobj.prototype.selector_or_has_property = function(selectors_or, property, pro
   
 }
 
+Astobj.prototype.selector_and_has_property = function(selectors_and, property, property_value) {
+  
+ var that = this;
+
+ return _.all(selectors_and,function(sel){
+   return that.selector_has_property(sel, property, property_value)
+ })
+  
+}
+
 
 Astobj.prototype.selector_has_property = function(selector, property, property_value) {
 
