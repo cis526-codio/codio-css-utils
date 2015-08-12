@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "css": "2.2.x",
-    "underscore": "1.8.x"
+    "underscore": "1.8.x",
+    "cheerio": "0.19.x"
   },
   "license": "MIT"
 }

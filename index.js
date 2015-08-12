@@ -1,12 +1,30 @@
 var css = require('css');
 var fs = require('fs');
+var pa = require('path')
 var _ = require('underscore');
+var cheerio = require('cheerio')
 
 function Astobj(path) {
   if (fs.existsSync(path)) {
     
-    var style_content = fs.readFileSync(path).toString('utf8');
-    this.ast = css.parse(style_content , { source: path });
+    var extname = pa.extname(path);
+    
+    if (extname == ".css") {
+      var style_content = fs.readFileSync(path).toString('utf8');
+      this.ast = css.parse(style_content , { source: path });
+    } else if (extname == ".html" || extname == ".htm") {
+      var html_content = fs.readFileSync(path).toString('utf8');
+      var $ = cheerio.load(html_content);
+      var style_content = "";
+      
+      $("style").each(function() {
+        style_content+=$(this).text();
+      });
+      
+      this.ast = css.parse(style_content);
+    }
+    
+   
     
   } else {
     this.ast = undefined;
@@ -53,6 +71,16 @@ Astobj.prototype.selector_has_property_anyvalue = function(selector, property) {
   });
   
   return (found !== undefined);
+  
+}
+
+Astobj.prototype.selector_or_has_property = function(selectors_or, property, property_value) {
+  
+ var that = this;
+
+ return _.any(selectors_or,function(sel){
+   return that.selector_has_property(sel, property, property_value)
+ })
   
 }
 
