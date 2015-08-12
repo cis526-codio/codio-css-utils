@@ -31,6 +31,21 @@ function Astobj(path) {
   }
 }
 
+Astobj.prototype.rules_count = function() {
+  var cnt=0;
+  
+  _.each(this.ast["stylesheet"]["rules"], function(item){
+    
+    if (item.type == "rule") {
+        cnt++;
+    }
+    
+    return false;
+  })
+  
+  return cnt;
+}
+
 
 Astobj.prototype.get_rules_for_selector = function(selector) {
   
