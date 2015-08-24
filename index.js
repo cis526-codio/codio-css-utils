@@ -166,7 +166,7 @@ Astobj.prototype.check = function(check_rules,errors) {
     
     _.each(check,function(value, key, list){
         if (!that.selector_has_property(selector,key,value)) {
-          if (error_message && (errors.indexOf(error_message) != -1)) {
+          if (error_message && (errors.indexOf(error_message) == -1)) {
             errors.push(error_message);
           } else {
             errors.push(selector + " should have "+ key + " " + value);
