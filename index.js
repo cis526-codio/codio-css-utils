@@ -46,6 +46,34 @@ Astobj.prototype.rules_count = function() {
   return cnt;
 }
 
+/*
+New Function added by Nathan Bean
+*/
+Astobj.prototype.get_rules_for_media_selector = function(media, selector) {
+  var ok_media = _.filter(this.ast["stylesheet"]["rules"], function(item){
+    
+    if(item.type == "media") {
+      return item.media == media;
+    }
+    
+    return false;
+  })
+  
+  var all_rules = _.flatten(_.map(ok_media, function(item){
+    return item.rules;
+  }))
+  
+  var ok_rules = _.filter(all_rules, function(item){
+    if(item.type == "rule") {
+      if(_.indexOf(item.selectors, selector) != -1) {
+        return true;
+      }
+    }
+    return false;
+  })
+  
+  return ok_rules;
+}
 
 Astobj.prototype.get_rules_for_selector = function(selector) {
   
@@ -61,6 +89,19 @@ Astobj.prototype.get_rules_for_selector = function(selector) {
   })
   
   return ok_rules;
+}
+
+/*
+New function added by Nathan Bean
+*/
+Astobj.prototype.get_declarations_for_media_selector = function(media, selector) {
+  var rules = this.get_rules_for_media_selector(media, selector);
+  
+  var declarations = _.map(rules,function(r) {
+    return r.declarations;
+  });
+  
+  return _.flatten(declarations);
 }
 
 Astobj.prototype.get_declarations_for_selector = function(selector) {
@@ -109,6 +150,24 @@ Astobj.prototype.selector_and_has_property = function(selectors_and, property, p
   
 }
 
+/*
+New Function added by Nathan Bean
+*/
+Astobj.prototype.media_selector_has_property = function(media, selector, property, property_value) {
+
+  var declarations = this.get_declarations_for_media_selector(media, selector);
+  
+  var found = _.find(declarations,function(decl) {
+     if ((decl.property == property)&&(decl.value == property_value)) {
+       return true;
+     } else {
+       return false;
+     }
+  });
+  
+  return (found !== undefined);
+  
+}
 
 Astobj.prototype.selector_has_property = function(selector, property, property_value) {
 

@@ -1,3 +1,23 @@
+# Fork Information
+
+This project was forked from https://bitbucket.org/dwarfy/codio-css-utils/src/master/.
+
+3 new functions were added:
+
+This returns all the CSS rules for a given media query (such as `"(max-width: 1050px)"`) and selector
+
+- `get_rules_for_media_selector(media, selector)`
+
+This returns all the CSS declarations for a given media query (such as `"(max-width: 1050px)"`) and selector
+
+- `get_declarations_for_media_selector(media, selector)`
+
+This returns true if given media query (such as `"(max-width: 1050px)"`) and `selector` has the property given with the value property_value.
+
+- `media_selector_has_property=(media, selector, property, property_value)`
+
+The rest of the documentation below is from the original source package. 
+
 # codio-css-utils
 
 This packages was developed for easing the use of the npm 'css' package.
